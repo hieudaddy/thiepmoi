@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Date Invitation</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="envelope" id="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+            <span class="envelope-text">Công chúa ơi, mở thiệp đi nè 💌</span>
+        </div>
+    </div>
+    <div class="hearts" id="hearts"></div>
+    <div class="card-images" id="cardImages" style="display:none;">
+        <img src="moviedate.png" alt="Card 1" class="card-img card-img-left" />
+        <img src="moviedate02.png" alt="Card 2" class="card-img card-img-right" />
+    </div>
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerText = '💖';
+            heart.style.left = Math.random() * 90 + 'vw';
+            heart.style.animationDuration = (Math.random() * 10 + 2) + 's';
+            document.getElementById('hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 20000);
+        }
+
+        document.getElementById('envelope').onclick = function() {
+            this.classList.add('open');
+            setTimeout(function() {
+                document.getElementById('envelope').style.display = 'none';
+                document.getElementById('cardImages').style.display = 'flex';
+                setTimeout(function() {
+                    document.querySelector('.card-img-left').classList.add('slide-left');
+                    document.querySelector('.card-img-right').classList.add('slide-right');
+                }, 100);
+
+                // Bắt đầu hiệu ứng trái tim rơi liên tục
+                setInterval(createHeart, 120);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
